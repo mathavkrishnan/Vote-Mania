@@ -1,0 +1,232 @@
+{% load socialaccount %}
+{% if user.is_authenticated %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vote</title>
+</head>
+<body>
+    <style>
+        .cards-list {
+            z-index: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+          }
+          
+          .card {
+            margin: 30px auto;
+            width: 300px;
+            height: 300px;
+            border-radius: 40px;
+          box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22);
+            cursor: pointer;
+            transition: 0.4s;
+          }
+          
+          .card .card_image {
+            width: inherit;
+            height: inherit;
+            border-radius: 40px;
+          }
+          
+          .card .card_image img {
+            width: inherit;
+            height: inherit;
+            border-radius: 40px;
+            object-fit: cover;
+          }
+          
+          .card .card_title {
+            text-align: center;
+            border-radius: 0px 0px 40px 40px;
+            font-family: sans-serif;
+            font-weight: bold;
+            font-size: 30px;
+            margin-top: -80px;
+            height: 40px;
+          }
+          
+          .card:hover {
+            transform: scale(0.9, 0.9);
+            box-shadow: 5px 5px 30px 15px rgba(0,0,0,0.25), 
+              -5px -5px 30px 15px rgba(0,0,0,0.22);
+          }
+          
+          .title-white {
+            color: white;
+          }
+          
+          .title-black {
+            color: black;
+          }
+          
+          @media all and (max-width: 500px) {
+            .card-list {
+              flex-direction: column;
+            }
+          }
+          .Marquee {
+            background: linear-gradient(-135deg, #252525, #000000);
+            width: 100%;
+            box-sizing: border-box;
+            padding: 1em;
+            color: #fff;
+            font-weight: 200;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+          }
+          .Marquee-content {
+            display: flex;
+            animation: marquee 10s linear infinite running;
+          }
+          .Marquee-content:hover {
+            animation-play-state: paused;
+          }
+          .Marquee-tag {
+            width: 200px;
+            margin: 0 0.5em;
+            padding: 0.5em;
+            background: rgba(255,255,255,0.1);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.1s ease;
+          }
+          .Marquee-tag:hover {
+            background: rgba(255,255,255,0.5);
+            transform: scale(1.1);
+            cursor: pointer;
+          }
+          @-moz-keyframes marquee {
+            0% {
+              transform: translateX(0);
+            }
+            100% {
+              transform: translate(-50%);
+            }
+          }
+          @-webkit-keyframes marquee {
+            0% {
+              transform: translateX(0);
+            }
+            100% {
+              transform: translate(-50%);
+            }
+          }
+          @-o-keyframes marquee {
+            0% {
+              transform: translateX(0);
+            }
+            100% {
+              transform: translate(-50%);
+            }
+          }
+          @keyframes marquee {
+            0% {
+              transform: translateX(0);
+            }
+            100% {
+              transform: translate(-50%);
+            }
+          }
+          
+    </style>
+    {% for obj in obj %}
+    <div class="Marquee">
+        <div class="Marquee-content">
+          {%if obj.onevote > obj.twovote %}
+          <div class="Marquee-tag">{{obj.one}} LEADS</div>
+          <div class="Marquee-tag">{{obj.one}} LEADS</div>
+          <div class="Marquee-tag">{{obj.one}} LEADS</div>
+          <div class="Marquee-tag">{{obj.one}} LEADS</div>
+          <div class="Marquee-tag">{{obj.one}} LEADS</div>
+          <div class="Marquee-tag">{{obj.one}} LEADS</div>
+          <div class="Marquee-tag">{{obj.one}} LEADS</div>
+          <div class="Marquee-tag">{{obj.one}} LEADS</div>
+          <div class="Marquee-tag">{{obj.one}} LEADS</div>
+          <div class="Marquee-tag">{{obj.one}} LEADS</div>
+          <div class="Marquee-tag">{{obj.one}} LEADS</div>
+          <div class="Marquee-tag">{{obj.one}} LEADS</div>
+          {%endif%}
+          {%if obj.twovote > obj.onevote %}
+          <div class="Marquee-tag">{{obj.two}} LEADS</div>
+          <div class="Marquee-tag">{{obj.two}} LEADS</div>
+          <div class="Marquee-tag">{{obj.two}} LEADS</div>
+          <div class="Marquee-tag">{{obj.two}} LEADS</div>
+          <div class="Marquee-tag">{{obj.two}} LEADS</div>
+          <div class="Marquee-tag">{{obj.two}} LEADS</div>
+          <div class="Marquee-tag">{{obj.two}} LEADS</div>
+          <div class="Marquee-tag">{{obj.two}} LEADS</div>
+          <div class="Marquee-tag">{{obj.two}} LEADS</div>
+          <div class="Marquee-tag">{{obj.two}} LEADS</div>
+          <div class="Marquee-tag">{{obj.two}} LEADS</div>
+          <div class="Marquee-tag">{{obj.two}} LEADS</div>
+          {%endif%}
+          {%if obj.twovote == obj.onevote %}
+          <div class="Marquee-tag">TIE</div>
+          <div class="Marquee-tag">TIE</div>
+          <div class="Marquee-tag">TIE</div>
+          <div class="Marquee-tag">TIE</div>
+          <div class="Marquee-tag">TIE</div>
+          <div class="Marquee-tag">TIE</div>
+          <div class="Marquee-tag">TIE</div>
+          <div class="Marquee-tag">TIE</div>
+          <div class="Marquee-tag">TIE</div>
+          <div class="Marquee-tag">TIE</div>
+          <div class="Marquee-tag">TIE</div>
+          <div class="Marquee-tag">TIE</div>
+          <div class="Marquee-tag">TIE</div>
+          {%endif%}
+        </div>
+      </div>
+      <div class="alert alert-dark" role="alert">
+        <div class="row">
+            <div class="col d-flex justify-content-center">
+                <h3>{{obj.one}}</h3> - <h4>{{obj.onevote}}</h4>
+            </div>
+            <div class="col d-flex justify-content-center">
+                <h3>{{obj.two}}</h3> - <h4>{{obj.twovote}}</h4>
+            </div>
+            {{err}}
+        </div>
+      </div>
+    <div class="pt-5 mt-5">
+        <div class="cards-list">
+            <div class="card 1">
+              <div class="card_image"> <img src="{{obj.oneimage}}"/> </div>
+              <div class="card_title title-white">
+                <p style="color: black;">{{obj.one}}</p>
+                <form action="{% url 'home' %}" method="POST">
+                    {%csrf_token%}
+                    <input name="one" value="one" style="display: none;">
+                    <button type="submit" class="btn btn-secondary">Vote</button>
+                  </form>
+              </div>
+            </div>
+            <div class="pt-5 mt-5">
+                <h1>vs</h1>
+            </div>
+            <div class="card 1">
+                <div class="card_image"> <img src="{{obj.twoimage}}" /> </div>
+                <div class="card_title title-white">
+                  <p style="color: black;">{{obj.two}}</p>
+                  <form action="{% url 'home' %}" method="POST">
+                    {%csrf_token%}
+                    <input name="two" value="two" style="display: none;">
+                    <button type="submit" class="btn btn-secondary">Vote</button>
+                  </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {%endfor%}
+</body>
+</html>
+{%endif%}
